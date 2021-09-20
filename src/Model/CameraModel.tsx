@@ -10,12 +10,12 @@ export enum CameraPos {
 }
 
 // Declaring the state object globally.
-export interface CameraState {
+export interface ICameraContextState {
   lastPosition: CameraPos,
   currentPosition: CameraPos;
 }
 
-const initialCameraState: CameraState = {
+const initialCameraState: ICameraContextState = {
   lastPosition: CameraPos.CENTER,
   currentPosition: CameraPos.CENTER
 }
@@ -24,6 +24,7 @@ const cameraContextWrapper = (component?: React.Component) => ({
   ...initialCameraState,
   setCameraPos: (pos: CameraPos) => {
     const lastPos = initialCameraState.currentPosition
+    console.log("Setting pos", lastPos, " => ", pos)
     initialCameraState.lastPosition = lastPos
     initialCameraState.currentPosition = pos
     component?.setState({ context: cameraContextWrapper(component) })

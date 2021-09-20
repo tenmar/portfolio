@@ -13,10 +13,12 @@
   height: 100%;
   justify-content: center;
   align-items: center;
+  border-width: 2;
 }
 
 .camera .container .content {
-  display: flex;
+  flex-direction: column;
+  flex-wrap: 1;
   max-width: calc(100% - 32px);
   max-height: calc(100% - 32px);
   width: 500px;

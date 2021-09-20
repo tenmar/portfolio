@@ -1,13 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import { CameraProvider } from './Model'
 import { Camera, Landing } from './Components'
 
 function App() {
   return (
     <div className="App">
-      <Camera center={<Landing />}  />
+      <CameraProvider>
+        <Camera center={<Landing />}  />
+      </CameraProvider>
     </div>
   );
 }
