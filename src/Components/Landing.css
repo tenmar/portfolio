@@ -1,61 +1,57 @@
 .landing-container {
-  height: 400px;
-    color: white;
-}
-
-.landing-container .row {
-  display: flex;
-  flex-direction: row;
-}
-
-.landing-container .col {
   display: flex;
   flex-direction: column;
+  color: white;
+  text-align: left;
+  padding: 16px;
+  width: 550px;
+}
+.landing-container-content {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.landing-container-content .row, .landing-container-content .col {
+  flex: 1;
 }
 
-.landing-container h1 {
+.landing-container-content h1, .landing-container-content h2 {
   margin: 0;
   font-weight: normal;
 }
 
-.landing-container h2 {
-  margin: 0;
-  font-weight: normal;
-}
-
-.landing-container h1 b {
+.landing-container-content h1 b {
   color: rgb(200,0,255);
 }
 
-.landing-container button {
+.landing-container-content button {
   padding: 0;
   border: none;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
+  font-size: 20px;
   transition: background-color 250ms;
   transition-timing-function: ease-in;
 }
-.landing-container button:hover {
+.landing-container-content button:hover {
   background: white;
   transition-timing-function: ease-out;
 }
 
-.landing-container button div {
-  margin-left: 38px;
+.landing-container-content button div {
   opacity: 0;
   transition: opacity 250ms;
   transition-timing-function: ease-in;
 }
-.landing-container button:hover div {
+.landing-container-content button:hover div {
   opacity: 1;
   transition-timing-function: ease-out;
 }
 
 
-.landing-container .constellation {
-  background-color: red;
+.landing-container-content .constellation {
 }
-.landing-container .constellation > div {
+.landing-container-content .constellation > div {
   display: block;
   position: absolute;
 }

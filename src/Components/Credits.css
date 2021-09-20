@@ -1,0 +1,53 @@
+.credits {
+  color: white;
+  text-align: right;
+  padding: 16px;
+}
+
+.credits a {
+  color: rgb(0, 200, 200);
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
+}
+
+.credits a:hover {
+  color: cyan;
+}
+
+.credits h1, .credits h2, .credits h3 {
+  margin: 0;
+}
+
+div.credits {
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+}
+
+.credits button.back-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  display: inline-block;
+  flex: 0;
+  padding: 8px;
+  opacity: 0.8;
+  transform-origin: center;
+  transform: scale(0.9);
+  transition: all 200ms ease-in-out;
+}
+
+
+.credits button.back-button:hover {
+  opacity:1;
+  transform-origin: center;
+  transform: scale(1);
+  cursor: pointer;
+}
+.credits button.back-button:active {
+  opacity:1;
+  transform-origin: center;
+  transform: scale(0.9);
+  cursor: pointer;
+  transition: all 50ms ease-out;
+}

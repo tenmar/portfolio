@@ -29,7 +29,7 @@ interface ICameraState {
   downStyles: AnimStyles,
 }
 
-const EXTRA_SIZE = 1000
+const EXTRA_SIZE = 500
 const EXTRA_SIZE_HALF = EXTRA_SIZE / 2
 
 function constructStates(amount: any, horizontal: boolean = true, duration: number = 500): AnimStyles {

@@ -4,10 +4,20 @@
   display: flex;
 
   /** We can use these to define our minimum height of the app container */
-  min-height: 270px;
-  min-width: 480px;
+  min-height: 320px;
+  min-width: 320px;
 
   align-items: center;
   justify-content: center;
   background-color: rgba(10,10,40);
+}
+
+div.row {
+  display: flex;
+  flex-direction: row;
+}
+
+div.col {
+  display: flex;
+  flex-direction: column;
 }

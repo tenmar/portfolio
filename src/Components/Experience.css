@@ -1,0 +1,43 @@
+.experience {
+  color: white;
+  text-align: left;
+  padding: 16px;
+}
+
+.experience h1, .experience h2, .experience h3 {
+  margin: 0;
+}
+
+div.experience {
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+}
+
+.experience button.back-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  display: inline-block;
+  flex: 0;
+  padding: 8px;
+  opacity: 0.8;
+  transform-origin: center;
+  transform: scale(0.9);
+  transition: all 200ms ease-in-out;
+}
+
+
+.experience button.back-button:hover {
+  opacity:1;
+  transform-origin: center;
+  transform: scale(1);
+  cursor: pointer;
+}
+.experience button.back-button:active {
+  opacity:1;
+  transform-origin: center;
+  transform: scale(0.9);
+  cursor: pointer;
+  transition: all 50ms ease-out;
+}
