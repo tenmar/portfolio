@@ -14,7 +14,51 @@
   justify-content: center;
   align-items: center;
   border-width: 2;
+  flex-direction: row;
 }
+
+.camera .container .return-area {
+  opacity: 0;
+  background-color: #FFF;
+  /* box-shadow: -32px 0 32px 32px white; */
+  transition: all 300ms;
+}
+
+.camera .container .return-area:hover {
+  opacity: 0.2;
+  cursor: pointer;
+}
+
+.camera .container .return-area:active {
+  opacity: 0.25;
+  cursor: pointer;
+}
+
+.camera .return-button  {
+  min-width: 32px;
+  min-height: 32px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 25px;
+  background-color: white;
+  opacity: 0.2;
+  transition: all 250ms ease-in-out
+}
+.camera .return-button:hover {
+  opacity: 0.4;
+  cursor: pointer;
+}
+.camera .return-button:active {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 50ms ease-in-out
+}
+
+
 
 .camera .container .content {
   flex-direction: column;
@@ -30,18 +74,49 @@
   font-weight: bold;
 }
 
-.camera .bg {
-  width: 100%;
-  height: 100%;
+.camera .bg-container {
+  z-index: 0;
+  width: calc(100vw + 64px);
+  height: calc(100vh + 64px);
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('../Media/stars.svg');
-  background-repeat: repeat;
   overflow: show;
-  background-size: 100%;
 }
+
+
+.camera .bg-back, .camera .bg-front {
+  width: 100%;
+  height: 100%;
+  mask-image: url('../Media/stars.svg');
+  mask-repeat: repeat;
+  mask-size: 1000px;
+}
+
+.camera .bg-back {
+  background-color: #999;
+  mask-position: 0 0;
+  animation: bgback 240s linear infinite forwards;
+}
+
+@keyframes bgback {
+  0% { mask-position: 0 0; }
+  100% { mask-position: -1000px 0; }
+}
+
+.camera .bg-front {
+  position: absolute;
+  background-color: #fff;
+  mask-position: -25px -25px;
+  mask-repeat: repeat;
+  animation: bgfront 120s linear infinite forwards;
+}
+@keyframes bgfront {
+  0% { mask-position: -256px 512px; }
+  100% { mask-position: -1256px 512px; }
+}
+
 
 
 .camera button {

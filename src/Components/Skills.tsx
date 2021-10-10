@@ -19,8 +19,10 @@ class Skills extends React.Component<ISkillsProps> {
   }
 
   render() {
-    return <div className="skills" style={{ flexDirection: 'column', borderWidth: 0.5, borderColor: 'white', width: 550 }}>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>{this.renderNav()}<h1 style={{ flex: 1 }}>Skills</h1></div>
+    return <div className="skills" style={{ flexDirection: 'column', width: 550 }}>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}><h1 style={{ flex: 1 }}>Skills</h1></div>
+      <div className='horizontal-divider-right' />
+
     </div>
   }
 }

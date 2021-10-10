@@ -8,12 +8,6 @@
   margin: 0;
 }
 
-div.projects {
-  border-width: 1px;
-  border-style: solid;
-  border-color: white;
-}
-
 .projects button.back-button {
   background-color: transparent;
   border: none;

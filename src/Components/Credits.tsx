@@ -19,8 +19,9 @@ class Credits extends React.Component<ICreditsProps> {
   }
 
   render() {
-    return <div className="credits" style={{ flexDirection: 'column', borderWidth: 0.5, borderColor: 'white', width: 550 }}>
-      <div className="row" style={{ alignItems: 'center'}}>{this.renderNav()}<h1 style={{ flex: 1 }}>Credits</h1></div>
+    return <div className="credits" style={{ flexDirection: 'column', width: 550 }}>
+      <div><h1 style={{ flex: 1, textAlign: 'center' }}>Credits</h1></div>
+      <div className='horizontal-divider-center' />
       <div className="row" style={{ textAlign: 'left'}}>
         <div className="col">
           <h4>Packages & Frameworks</h4>

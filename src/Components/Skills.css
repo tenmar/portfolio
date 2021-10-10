@@ -7,13 +7,7 @@
 .skills h1, .skills h2, .skills h3 {
   margin: 0;
 }
-
-div.skills {
-  border-width: 1px;
-  border-style: solid;
-  border-color: white;
-}
-
+Q
 .skills button.back-button {
   background-color: transparent;
   border: none;

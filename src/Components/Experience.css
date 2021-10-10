@@ -8,11 +8,6 @@
   margin: 0;
 }
 
-div.experience {
-  border-width: 1px;
-  border-style: solid;
-  border-color: white;
-}
 
 .experience button.back-button {
   background-color: transparent;

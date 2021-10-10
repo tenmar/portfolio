@@ -18,11 +18,6 @@
   margin: 0;
 }
 
-div.credits {
-  border-width: 1px;
-  border-style: solid;
-  border-color: white;
-}
 
 .credits button.back-button {
   background-color: transparent;

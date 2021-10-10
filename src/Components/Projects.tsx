@@ -19,8 +19,9 @@ class Projects extends React.Component<IProjectsProps> {
   }
 
   render() {
-    return <div className="projects" style={{ flexDirection: 'column', borderWidth: 0.5, borderColor: 'white', width: 550 }}>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}><h1 style={{ flex: 1 }}>Projects</h1>{this.renderNav()}</div>
+    return <div className="projects" style={{ flexDirection: 'column', width: 550 }}>
+      <div><h1 style={{ flex: 1, textAlign: 'center' }}>Projects</h1></div>
+      <div className='horizontal-divider-center' />
     </div>
   }
 }

@@ -21,3 +21,38 @@ div.col {
   display: flex;
   flex-direction: column;
 }
+
+
+.horizontal-divider-left {
+  height: 1px;
+  border-radius: 2px;
+  background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 16px;
+}
+
+.horizontal-divider-right{
+  height: 1px;
+  border-radius: 2px;
+  background-image: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 16px;
+}
+
+.horizontal-divider-center{
+  height: 1px;
+  border-radius: 2px;
+  background-image: linear-gradient(to right, 
+    rgba(255,255,255,0), 
+    rgba(255,255,255,1), 
+    rgba(255,255,255,1), 
+    rgba(255,255,255,1), 
+    rgba(255,255,255,0)
+  );
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 16px;
+  margin-left: 16px
+}
