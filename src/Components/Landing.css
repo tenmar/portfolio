@@ -51,7 +51,15 @@
 
 
 .landing-container-content .constellation {
+  min-width: 320px;
+  max-width: 320px; 
+  min-height: 320px;
+  max-height: 320px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+
 .landing-container-content .constellation > div {
   display: block;
   position: absolute;

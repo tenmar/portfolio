@@ -326,7 +326,9 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
     const { lastPosition, currentPosition } = this.state
     const atCenter = currentPosition === CameraPos.CENTER
 
-    return <button disabled={pos == CameraPos.CENTER ? atCenter : !atCenter} onClick={(evt: any) => { this.props.camera.setCameraPos(pos) }}>{CameraPos[pos]}</button>
+    return <button disabled={pos == CameraPos.CENTER ? atCenter : !atCenter} onClick={(evt: any) => { this.props.camera.setCameraPos(pos) }}>
+      {CameraPos[pos]}
+    </button>
   }
 
   render() {
@@ -340,9 +342,9 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
           in={currentPosition === CameraPos.CENTER}
           unmountOnExit={false}
           timeout={BASE_DURATION}>
-          {state => <div className="bg-container" style={{ ...bgStyles[state] }}>
-            <div className="bg-back" />
-            <div className="bg-front" />
+          {state => <div className="bg-container">
+            <div className="bg-back" style={{ ...bgStyles[state] }} />
+            <div className="bg-front" style={{ ...bgStyles[state] }} />
           </div>}
         </Transition>
 

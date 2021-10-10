@@ -7,7 +7,16 @@
 .skills h1, .skills h2, .skills h3 {
   margin: 0;
 }
-Q
+
+.skills ul {
+  /* direction: rtl; */
+  list-style-type: disc;
+}
+
+.skills ul li {
+  display: inline;
+}
+
 .skills button.back-button {
   background-color: transparent;
   border: none;
