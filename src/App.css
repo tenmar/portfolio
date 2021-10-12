@@ -9,7 +9,7 @@
 
   align-items: center;
   justify-content: center;
-  background-color: rgba(10,10,40);
+  background-color: rgba(10, 10, 40);
 }
 
 div.row {
@@ -22,40 +22,48 @@ div.col {
   flex-direction: column;
 }
 
-
 .horizontal-divider-left {
   height: 2px;
   border-radius: 1px;
-  background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
   overflow: hidden;
   margin-top: 4px;
   margin-bottom: 4px;
   margin-right: 16px;
 }
 
-.horizontal-divider-right{
+.horizontal-divider-right {
   height: 2px;
   border-radius: 1px;
-  background-image: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+  background-image: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
   overflow: hidden;
   margin-top: 4px;
   margin-bottom: 4px;
   margin-left: 16px;
 }
 
-.horizontal-divider-center{
+.horizontal-divider-center {
   height: 2px;
   border-radius: 1px;
   overflow: hidden;
-  background-image: linear-gradient(to right, 
-    rgba(255,255,255,0), 
-    rgba(255,255,255,1), 
-    rgba(255,255,255,1), 
-    rgba(255,255,255,1), 
-    rgba(255,255,255,0)
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
   );
   margin-top: 4px;
   margin-bottom: 4px;
   margin-right: 16px;
-  margin-left: 16px
+  margin-left: 16px;
 }

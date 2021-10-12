@@ -14,10 +14,11 @@
   color: cyan;
 }
 
-.credits h1, .credits h2, .credits h3 {
+.credits h1,
+.credits h2,
+.credits h3 {
   margin: 0;
 }
-
 
 .credits button.back-button {
   background-color: transparent;
@@ -32,15 +33,14 @@
   transition: all 200ms ease-in-out;
 }
 
-
 .credits button.back-button:hover {
-  opacity:1;
+  opacity: 1;
   transform-origin: center;
   transform: scale(1);
   cursor: pointer;
 }
 .credits button.back-button:active {
-  opacity:1;
+  opacity: 1;
   transform-origin: center;
   transform: scale(0.9);
   cursor: pointer;

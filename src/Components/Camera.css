@@ -19,7 +19,7 @@
 
 .camera .container .return-area {
   opacity: 0;
-  background-color: #FFF;
+  background-color: #fff;
   /* box-shadow: -32px 0 32px 32px white; */
   transition: all 300ms;
 }
@@ -34,7 +34,7 @@
   cursor: pointer;
 }
 
-.camera .return-button  {
+.camera .return-button {
   min-width: 32px;
   min-height: 32px;
   width: 50px;
@@ -46,7 +46,7 @@
   border-radius: 25px;
   background-color: white;
   opacity: 0.2;
-  transition: all 250ms ease-in-out
+  transition: all 250ms ease-in-out;
 }
 .camera .return-button:hover {
   opacity: 0.4;
@@ -55,10 +55,8 @@
 .camera .return-button:active {
   opacity: 0.6;
   cursor: pointer;
-  transition: all 50ms ease-in-out
+  transition: all 50ms ease-in-out;
 }
-
-
 
 .camera .container .content {
   flex-direction: column;
@@ -85,11 +83,11 @@
   overflow: show;
 }
 
-
-.camera .bg-back, .camera .bg-front {
+.camera .bg-back,
+.camera .bg-front {
   width: 100%;
   height: 100%;
-  mask-image: url('../Media/stars.svg');
+  mask-image: url("../Media/stars.svg");
   mask-repeat: repeat;
   mask-size: 1000px;
 }
@@ -101,8 +99,12 @@
 }
 
 @keyframes bgback {
-  0% { mask-position: 0 0; }
-  100% { mask-position: -1000px 0; }
+  0% {
+    mask-position: 0 0;
+  }
+  100% {
+    mask-position: -1000px 0;
+  }
 }
 
 .camera .bg-front {
@@ -113,11 +115,13 @@
   animation: bgfront 120s linear infinite forwards;
 }
 @keyframes bgfront {
-  0% { mask-position: -256px 512px; }
-  100% { mask-position: -1256px 512px; }
+  0% {
+    mask-position: -256px 512px;
+  }
+  100% {
+    mask-position: -1256px 512px;
+  }
 }
-
-
 
 .camera button {
   flex: 1;

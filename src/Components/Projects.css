@@ -4,7 +4,9 @@
   padding: 16px;
 }
 
-.projects h1, .projects h2, .projects h3 {
+.projects h1,
+.projects h2,
+.projects h3 {
   margin: 0;
 }
 
@@ -21,15 +23,14 @@
   transition: all 200ms ease-in-out;
 }
 
-
 .projects button.back-button:hover {
-  opacity:1;
+  opacity: 1;
   transform-origin: center;
   transform: scale(1);
   cursor: pointer;
 }
 .projects button.back-button:active {
-  opacity:1;
+  opacity: 1;
   transform-origin: center;
   transform: scale(0.9);
   cursor: pointer;
