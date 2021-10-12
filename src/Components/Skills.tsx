@@ -8,6 +8,10 @@ interface ISkillsProps {
   camera: any;
 }
 
+const LANGUAGES: string[] = ['JavaScript','TypeScript','Kotlin','Swift','Java','C#','Python','SQL']
+const TECNOLOGY: string[] = ['ReactJS','React Native','Redux','Node.js','Android Studio','XCode','Visual Studio','Git', 'Google Cloud Platform']
+
+
 class Skills extends React.Component<ISkillsProps> {
   constructor(props: ISkillsProps) {
     super(props);
@@ -43,28 +47,9 @@ class Skills extends React.Component<ISkillsProps> {
         <div className="horizontal-divider-right" />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h2>Languages</h2>
-          <ul>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
-            <li>Kotlin</li>
-            <li>Swift</li>
-            <li>Java</li>
-            <li>C#</li>
-            <li>Python</li>
-            <li>SQL</li>
-          </ul>
+          <ul>{LANGUAGES.map(lang => <li>{lang}</li>)}</ul>
           <h2>Technology</h2>
-          <ul>
-            <li>ReactJS</li>
-            <li>React Native</li>
-            <li>Redux</li>
-            <li>Node.js</li>
-            <li>Google Cloud Platform</li>
-            <li>Android Studio</li>
-            <li>XCode</li>
-            <li>Visual Studio</li>
-            <li>Git</li>
-          </ul>
+          <ul>{TECNOLOGY.map(tech => <li>{tech}</li>)}</ul>
         </div>
       </div>
     );

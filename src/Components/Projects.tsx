@@ -15,7 +15,7 @@ const DEFAULT_PROJECT: Project = {
   image: "",
   title: "Project Title Here",
   description:
-    "Project description and what I did to make it and some other relevant information about it. Small blurb.",
+    "Project description and what I did to make it and some other relevant information about it.",
   date: new Date().getTime(),
 };
 
@@ -59,14 +59,17 @@ class GridList extends React.Component<IGridListProps, IGridListState> {
             backgroundColor: "rgba(255,255,255, 0.2)",
           }}
         />
-        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-          <h2 style={{ fontSize: 14, margin: 0, padding: 0, marginBottom: 8 }}>
+        <div style={{ maxHeight: imageSize, flex: 1, display: "flex", flexDirection: "column" }}>
+          <h2 style={{ flex: 0, fontSize: 18, lineHeight: '18px', margin: 0, padding: 0, marginBottom: 8 }}>
             {item.title}
           </h2>
           <p
             style={{
-              fontSize: 10,
-              textOverflow: "ellipsis",
+              flex:1, 
+              fontSize: 12,
+              lineClamp: 4,
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
               margin: 0,
               padding: 0,
             }}

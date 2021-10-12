@@ -9,14 +9,28 @@
 .skills h3 {
   margin: 0;
 }
-
+/* nothing really works as expted with lists, might want to roll your own delimter rendering !  */
 .skills ul {
-  /* direction: rtl; */
-  list-style-type: disc;
+  direction: rtl;
+  padding: 0;
 }
 
 .skills ul li {
   display: inline;
+  flex: 0;
+}
+.skills ul li::before {
+    content: "\2666";
+    display: inline;
+    margin-left: 12px;
+    margin-right: 12px;
+    float: none;
+    font-size: 10px;
+}
+.skills ul li:first-child::before {
+  background-color: red;
+  content: '';
+  display: none;
 }
 
 .skills button.back-button {
