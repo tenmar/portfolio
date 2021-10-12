@@ -36,7 +36,7 @@ const cameraContextWrapper = (component?: React.Component) => ({
     component?.setState({ context: cameraContextWrapper(component) });
   },
   isAtCenter: () => {
-    return initialCameraState.currentPosition == CameraPos.CENTER;
+    return initialCameraState.currentPosition === CameraPos.CENTER;
   },
 });
 

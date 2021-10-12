@@ -166,11 +166,9 @@ class Landing extends React.Component<ILandingProps, ILandingState> {
     this.renderNav = this.renderNav.bind(this);
   }
 
-  renderNav(pos: CameraPos, title?: string, right: boolean = true) {
-    const { lastPosition, currentPosition } = this.props.camera;
+  renderNav(pos: CameraPos) {
+    const { currentPosition } = this.props.camera;
     const atCenter = currentPosition === CameraPos.CENTER;
-
-    const padding = 8;
 
     const handleOnPointerOver: React.PointerEventHandler<HTMLButtonElement> = (
       evt: React.PointerEvent<HTMLButtonElement>
@@ -188,7 +186,7 @@ class Landing extends React.Component<ILandingProps, ILandingState> {
       this.props.camera.setCameraPos(pos);
     };
 
-    const disable = pos == CameraPos.CENTER ? atCenter : !atCenter;
+    const disable = pos === CameraPos.CENTER ? atCenter : !atCenter;
 
     return (
       <button

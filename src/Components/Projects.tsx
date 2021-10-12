@@ -3,13 +3,9 @@ import React from "react";
 import "./Projects.css";
 
 import { withCamera } from "../Model";
-
-interface Project {
-  image: string;
-  title: string;
-  description: string;
-  date?: number;
-}
+import { Project } from "../Model/types";
+import { OverlayProject } from ".";
+import { Transition } from "react-transition-group";
 
 const DEFAULT_PROJECT: Project = {
   image: "",
@@ -48,10 +44,10 @@ class GridList extends React.Component<IGridListProps, IGridListState> {
     const imageSize = 100;
 
     return (
-      <div
+      <div className="list-item-container"
         style={{ display: "flex", maxHeight: imageSize, flexDirection: "row" }}
       >
-        <div
+        <div className="list-item-image"
           style={{
             height: imageSize,
             width: imageSize,
@@ -85,7 +81,7 @@ class GridList extends React.Component<IGridListProps, IGridListState> {
     const total = this.props.data.length;
     const pages = Math.ceil(total / 4);
 
-    if (pages == 1) {
+    if (pages === 1) {
       return <></>;
     }
 
@@ -152,10 +148,14 @@ class GridList extends React.Component<IGridListProps, IGridListState> {
 interface IProjectsProps {
   camera: any;
 }
-
-class Projects extends React.Component<IProjectsProps> {
+interface IProjectsState {
+  selectedProject?: Project
+}
+class Projects extends React.Component<IProjectsProps, IProjectsState> {
   constructor(props: IProjectsProps) {
     super(props);
+
+    this.state = {}
 
     this.renderNav = this.renderNav.bind(this);
   }
@@ -174,7 +174,9 @@ class Projects extends React.Component<IProjectsProps> {
   }
 
   render() {
-    return (
+
+
+    return <>
       <div className="projects" style={{ flexDirection: "column", width: 550 }}>
         <div>
           <h1 style={{ flex: 1, textAlign: "center" }}>Projects</h1>
@@ -183,7 +185,15 @@ class Projects extends React.Component<IProjectsProps> {
 
         <GridList></GridList>
       </div>
-    );
+      <Transition
+        in={this.state.selectedProject !== undefined}
+        timeout={500}
+        appear={true}
+        unmountOnExit={true}
+      >
+        <OverlayProject project={{ image: '', title: 'hello world', description: 'description'}} />
+      </Transition>
+    </>
   }
 }
 

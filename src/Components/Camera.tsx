@@ -5,13 +5,10 @@ import { Transition, TransitionStatus } from "react-transition-group";
 
 import { CameraPos, withCamera } from "../Model";
 
-import StarsBG from "./StarsBG";
-
 import { ReactComponent as TriangleLeftIcon } from "../Media/tri_left.svg";
 import { ReactComponent as TriangleRightIcon } from "../Media/tri_right.svg";
 import { ReactComponent as TriangleUpIcon } from "../Media/tri_up.svg";
 import { ReactComponent as TriangleDownIcon } from "../Media/tri_down.svg";
-import { off } from "process";
 
 interface ICameraProps {
   center?: React.ReactNode;
@@ -35,8 +32,6 @@ interface ICameraState {
   downStyles: AnimStyles;
 }
 
-const EXTRA_SIZE = 500;
-const EXTRA_SIZE_HALF = EXTRA_SIZE / 2;
 
 const BASE_DURATION = 750;
 
@@ -158,7 +153,7 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
 
   checkPos(pos: CameraPos) {
     const { currentPosition, lastPosition } = this.state;
-    return currentPosition == pos || lastPosition == pos;
+    return currentPosition === pos || lastPosition === pos;
   }
 
   getControlStyle(
@@ -244,7 +239,6 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
       rightStyles,
       upStyles,
       downStyles,
-      lastPosition,
       currentPosition,
     } = this.state;
 
@@ -291,10 +285,7 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
     state: TransitionStatus,
     duration: number = BASE_DURATION / 2
   ) {
-    const { currentPosition, lastPosition } = this.state;
 
-    let isHorizontal =
-      this.checkPos(CameraPos.LEFT) || this.checkPos(CameraPos.RIGHT);
     let isVertical =
       this.checkPos(CameraPos.UP) || this.checkPos(CameraPos.DOWN);
 
@@ -345,46 +336,46 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
       unmounted: { transform: transformExit, transition: baseTrans, ...anchor },
     };
 
-    return <div />;
+    return <div style={transitionStyle[state]} />;
 
-    return (
-      <div
-        className="foreground-decoration"
-        style={{
-          position: "fixed",
-          zIndex: 10,
-          display: "flex",
-          flexDirection: isHorizontal
-            ? "column"
-            : isVertical
-            ? "row"
-            : "column",
-          ...style,
-          ...transitionStyle[state],
-        }}
-      >
-        <div
-          style={{
-            width: 400,
-            height: 400,
-            transform: "translateX(200px) translateY(-200px)",
-            borderRadius: 200,
-            backgroundColor: "black",
-          }}
-        />
-        <div style={{ flex: 1 }} />
-        <div style={{ flex: 1 }} />
-        <div
-          style={{
-            width: 350,
-            height: 350,
-            borderRadius: 175,
-            transform: "translateX(175px) translateY(175px)",
-            backgroundColor: "black",
-          }}
-        />
-      </div>
-    );
+    // return (
+    //   <div
+    //     className="foreground-decoration"
+    //     style={{
+    //       position: "fixed",
+    //       zIndex: 10,
+    //       display: "flex",
+    //       flexDirection: isHorizontal
+    //         ? "column"
+    //         : isVertical
+    //         ? "row"
+    //         : "column",
+    //       ...style,
+    //       ...transitionStyle[state],
+    //     }}
+    //   >
+    //     <div
+    //       style={{
+    //         width: 400,
+    //         height: 400,
+    //         transform: "translateX(200px) translateY(-200px)",
+    //         borderRadius: 200,
+    //         backgroundColor: "black",
+    //       }}
+    //     />
+    //     <div style={{ flex: 1 }} />
+    //     <div style={{ flex: 1 }} />
+    //     <div
+    //       style={{
+    //         width: 350,
+    //         height: 350,
+    //         borderRadius: 175,
+    //         transform: "translateX(175px) translateY(175px)",
+    //         backgroundColor: "black",
+    //       }}
+    //     />
+    //   </div>
+    // );
   }
 
   renderDebugControls(state: boolean = false) {
@@ -414,12 +405,12 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
   }
 
   renderNav(pos: CameraPos) {
-    const { lastPosition, currentPosition } = this.state;
+    const { currentPosition } = this.state;
     const atCenter = currentPosition === CameraPos.CENTER;
 
     return (
       <button
-        disabled={pos == CameraPos.CENTER ? atCenter : !atCenter}
+        disabled={pos === CameraPos.CENTER ? atCenter : !atCenter}
         onClick={(evt: any) => {
           this.props.camera.setCameraPos(pos);
         }}
@@ -430,9 +421,9 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
   }
 
   render() {
-    const { center, left, right, up, down, camera } = this.props;
+    const { center, left, right, up, down } = this.props;
 
-    const { bgStyles, centerStyles, lastPosition, currentPosition } =
+    const { bgStyles, centerStyles, currentPosition } =
       this.state;
 
     return (

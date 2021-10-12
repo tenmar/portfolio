@@ -36,3 +36,22 @@
   cursor: pointer;
   transition: all 50ms ease-out;
 }
+
+
+.projects .list-item-container {
+
+  transition: all 250ms ease-in-out;
+}
+.projects .list-item-container:hover {
+  cursor: pointer;
+}
+
+.projects .list-item-container .list-item-image {
+  background-color: white;
+  opacity: 0.2;
+  transition: all 250ms ease-in-out;
+}
+
+.projects .list-item-container:hover .list-item-image {
+  opacity: 0.8;
+}
