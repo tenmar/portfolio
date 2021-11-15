@@ -61,6 +61,7 @@
   aspect-ratio: 2/1;
   object-fit: cover;
   transition: all 250ms ease-in-out;
+  background-color: black;
 }
 .experience .resume-preview:hover {
   opacity: 0.6;
