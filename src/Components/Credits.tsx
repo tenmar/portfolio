@@ -47,7 +47,8 @@ class Credits extends React.Component<ICreditsProps> {
           <div className="col" style={{ flex: 1 }} />
           <div className="col" style={{ textAlign: "right" }}>
             <h4>Misc</h4>
-            <a href="https://atom.io/">Atom</a>
+            <a href="https://www.typescriptlang.org/">TypeScript</a>
+            <a href="https://code.visualstudio.com/">VS Code</a>
           </div>
         </div>
       </div>

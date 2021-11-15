@@ -9,31 +9,26 @@
 .skills h3 {
   margin: 0;
 }
-/* nothing really works as expted with lists, might want to roll your own delimter rendering !  */
-.skills ul {
+
+.skills .skills-container {
+  margin-top: 8px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   direction: rtl;
-  padding: 0;
+  row-gap: 8px;
 }
 
-.skills ul li {
-  display: inline;
-  flex: 0;
-}
-.skills ul li::before {
-    content: "\2666";
-    display: inline;
-    margin-left: 12px;
-    margin-right: 12px;
-    float: none;
-    font-size: 10px;
-}
-.skills ul li:first-child::before {
-  background-color: red;
-  content: '';
-  display: none;
+.skills-container .skills-item {
+  word-break: keep-all;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-left: 6px;
 }
 
-.skills button.back-button {
+button.back-button {
   background-color: transparent;
   border: none;
   color: white;

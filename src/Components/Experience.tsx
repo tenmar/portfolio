@@ -3,6 +3,9 @@ import React from "react";
 import "./Experience.css";
 
 import { withCamera } from "../Model";
+import ResumePreviewBG from '../Media/resume_preview_bg.png'
+
+import ResumePDF from '../Media/rollins_tenma_resume.pdf';
 
 interface IExperienceProps {
   camera: any;
@@ -44,16 +47,16 @@ class Experience extends React.Component<IExperienceProps> {
           <h1 style={{ flex: 1 }}>Experience</h1>
         </div>
         <div className="horizontal-divider-left" />
-        <h2>Handimaps</h2>
-        <ol>
-          <li>Lead Software Developer</li>
-          <li>Associate Software Developer</li>
-          <li>Intern Developer</li>
-        </ol>
-        <h3>CoderDojo</h3>
-        <ol>
-          <li>Volunteer Teaching Assistant</li>
-        </ol>
+        <a href={ResumePDF} target="_blank" rel="noreferrer">
+        <div className="resume-preview-container">
+          <img
+            src={ResumePreviewBG}
+            className='resume-preview'
+            alt="Blurred preview of my resume."
+          />
+          <h2>Resume</h2>
+        </div>
+        </a>
       </div>
     );
   }

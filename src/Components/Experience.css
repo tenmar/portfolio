@@ -36,3 +36,39 @@
   cursor: pointer;
   transition: all 50ms ease-out;
 }
+
+.experience .resume-preview-container {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.experience .resume-preview-container h2 {
+  position: absolute;
+  margin-bottom: 16px;
+}
+
+.experience a {
+  color: white;
+}
+
+.experience .resume-preview {
+  opacity: 0.4;
+  width: 100%;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+  transition: all 250ms ease-in-out;
+}
+.experience .resume-preview:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.experience .resume-preview:active {
+  opacity: 0.7;
+  cursor: pointer;
+  transition: all 50ms linear;
+}

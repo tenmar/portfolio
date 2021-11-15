@@ -32,7 +32,6 @@ interface ICameraState {
   downStyles: AnimStyles;
 }
 
-
 const BASE_DURATION = 750;
 
 function constructStates(
@@ -119,6 +118,14 @@ function getBGClassStyle(
 }
 
 class Camera extends React.Component<ICameraProps, ICameraState> {
+  bgRef: React.RefObject<any>;
+  centerRef: React.RefObject<any>;
+  leftRef: React.RefObject<any>;
+  upRef: React.RefObject<any>;
+  downRef: React.RefObject<any>;
+  rightRef: React.RefObject<any>;
+  controlRef: React.RefObject<any>;
+
   constructor(props: ICameraProps) {
     super(props);
 
@@ -140,6 +147,14 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
       upStyles: defaultStyles,
       downStyles: defaultStyles,
     };
+
+    this.bgRef = React.createRef();
+    this.centerRef = React.createRef();
+    this.leftRef = React.createRef();
+    this.upRef = React.createRef();
+    this.downRef = React.createRef();
+    this.rightRef = React.createRef();
+    this.controlRef = React.createRef();
 
     this.checkPos = this.checkPos.bind(this);
     this.getControlStyle = this.getControlStyle.bind(this);
@@ -216,8 +231,8 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
       style = { marginBottom: "4px" };
     }
 
-    let handleOnClick: React.MouseEventHandler<HTMLDivElement> = (
-      event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    let handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (
+      event: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
       event.preventDefault();
       event.stopPropagation();
@@ -225,22 +240,24 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
     };
 
     return (
-      <div style={{ ...this.getControlStyle(transitionState) }}>
-        <div className="return-button" onClick={handleOnClick}>
+      <div
+        ref={this.controlRef}
+        style={{ ...this.getControlStyle(transitionState) }}
+      >
+        <button className="return-button" onClick={handleOnClick}>
           <TriIcon style={style} fill="black" />
-        </div>
+        </button>
       </div>
     );
   }
 
-  renderTransition(pos: CameraPos, child?: React.ReactNode) {
-    const {
-      leftStyles,
-      rightStyles,
-      upStyles,
-      downStyles,
-      currentPosition,
-    } = this.state;
+  renderTransition(
+    pos: CameraPos,
+    child?: React.ReactNode,
+    ref?: React.RefObject<any>
+  ) {
+    const { leftStyles, rightStyles, upStyles, downStyles, currentPosition } =
+      this.state;
 
     const animationStyles =
       CameraPos.LEFT === pos
@@ -261,6 +278,7 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
 
     return (
       <Transition
+        nodeRef={ref}
         in={currentPosition === pos}
         timeout={500}
         appear={true}
@@ -270,6 +288,7 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
         {(state) => {
           return (
             <div
+              ref={ref}
               className="container"
               style={{ ...baseStyle, ...animationStyles[state] }}
             >
@@ -285,7 +304,6 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
     state: TransitionStatus,
     duration: number = BASE_DURATION / 2
   ) {
-
     let isVertical =
       this.checkPos(CameraPos.UP) || this.checkPos(CameraPos.DOWN);
 
@@ -386,9 +404,9 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
     return (
       <div style={{ position: "absolute", zIndex: 10 }}>
         <div style={{ display: "flex", flexDirection: "row" }}>
-          <button disabled />
+          <button className="debug" disabled />
           {this.renderNav(CameraPos.UP)}
-          <button disabled />
+          <button className="debug" disabled />
         </div>
         <div style={{ display: "flex", flexDirection: "row" }}>
           {this.renderNav(CameraPos.LEFT)}
@@ -396,9 +414,9 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
           {this.renderNav(CameraPos.RIGHT)}
         </div>
         <div style={{ display: "flex", flexDirection: "row" }}>
-          <button disabled />
+          <button className="debug" disabled />
           {this.renderNav(CameraPos.DOWN)}
-          <button disabled />
+          <button className="debug" disabled />
         </div>
       </div>
     );
@@ -423,18 +441,18 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
   render() {
     const { center, left, right, up, down } = this.props;
 
-    const { bgStyles, centerStyles, currentPosition } =
-      this.state;
+    const { bgStyles, centerStyles, currentPosition } = this.state;
 
     return (
       <div className="camera">
         <Transition
+          nodeRef={this.bgRef}
           in={currentPosition === CameraPos.CENTER}
           unmountOnExit={false}
           timeout={BASE_DURATION}
         >
           {(state) => (
-            <div className="bg-container">
+            <div ref={this.bgRef} className="bg-container">
               <div className="bg-back" style={{ ...bgStyles[state] }} />
               <div className="bg-front" style={{ ...bgStyles[state] }} />
             </div>
@@ -444,6 +462,7 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
         {this.renderDebugControls(false)}
 
         <Transition
+          nodeRef={this.centerRef}
           in={currentPosition === CameraPos.CENTER}
           timeout={BASE_DURATION}
           appear={true}
@@ -451,29 +470,24 @@ class Camera extends React.Component<ICameraProps, ICameraState> {
           unmountOnExit={false}
         >
           {(state) => (
-            <div className="container" style={{ ...centerStyles[state] }}>
+            <div
+              ref={this.centerRef}
+              className="container"
+              style={{ ...centerStyles[state] }}
+            >
               {center}
             </div>
           )}
         </Transition>
 
-        {this.renderTransition(CameraPos.LEFT, left)}
-        {this.renderTransition(CameraPos.UP, up)}
-        {this.renderTransition(CameraPos.RIGHT, right)}
-        {this.renderTransition(CameraPos.DOWN, down)}
+        {this.renderTransition(CameraPos.LEFT, left, this.leftRef)}
+        {this.renderTransition(CameraPos.UP, up, this.upRef)}
+        {this.renderTransition(CameraPos.RIGHT, right, this.rightRef)}
+        {this.renderTransition(CameraPos.DOWN, down, this.downRef)}
 
         <Transition
-          in={currentPosition !== CameraPos.CENTER}
-          timeout={BASE_DURATION}
-          appear={false}
-          mountOnEnter={true}
-          unmountOnExit={true}
-        >
-          {(state) => this.renderDecoration(state)}
-        </Transition>
-
-        <Transition
-          in={currentPosition !== CameraPos.CENTER}
+          nodeRef={this.controlRef}
+          in={currentPosition !== CameraPos.CENTER && this.props.camera.shouldHideReturn === false}
           timeout={BASE_DURATION}
           appear={true}
           unmountOnExit={true}

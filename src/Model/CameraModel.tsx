@@ -13,11 +13,13 @@ export enum CameraPos {
 export interface ICameraContextState {
   lastPosition: CameraPos;
   currentPosition: CameraPos;
+  shouldHideReturn: boolean;
 }
 
 const initialCameraState: ICameraContextState = {
   lastPosition: CameraPos.CENTER,
   currentPosition: CameraPos.CENTER,
+  shouldHideReturn: false,
 };
 
 const cameraContextWrapper = (component?: React.Component) => ({
@@ -38,6 +40,10 @@ const cameraContextWrapper = (component?: React.Component) => ({
   isAtCenter: () => {
     return initialCameraState.currentPosition === CameraPos.CENTER;
   },
+  toggleReturnButtonState: () => {
+    initialCameraState.shouldHideReturn = !initialCameraState.shouldHideReturn
+    component?.setState({ context: cameraContextWrapper(component) })
+  }
 });
 
 type Context = ReturnType<typeof cameraContextWrapper>;

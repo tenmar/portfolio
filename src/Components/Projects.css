@@ -37,6 +37,11 @@
   transition: all 50ms ease-out;
 }
 
+.projects .list-content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 
 .projects .list-item-container {
 
@@ -48,10 +53,41 @@
 
 .projects .list-item-container .list-item-image {
   background-color: white;
-  opacity: 0.2;
+  opacity: 0.4;
   transition: all 250ms ease-in-out;
 }
 
 .projects .list-item-container:hover .list-item-image {
-  opacity: 0.8;
+  opacity: 1;
+}
+
+.projects .list-item-text {
+  margin-left: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 550px) {
+    .projects .list-content-container {
+      margin: auto;
+    }
+
+    .projects .list-item-image {
+      aspect-ratio: 1;
+      width: 100%
+    }
+
+    .projects .list-item-text {
+      margin-left: 0;
+      display: none
+    }
+    .projects .list-item-container {
+      justify-content: space-around;
+    }
+}
+
+.projects .projects-overlay-bg {
+  flex: 1;
+  background-color: red;
 }

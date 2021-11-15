@@ -34,30 +34,6 @@
   cursor: pointer;
 }
 
-.camera .return-button {
-  min-width: 32px;
-  min-height: 32px;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 25px;
-  background-color: white;
-  opacity: 0.2;
-  transition: all 250ms ease-in-out;
-}
-.camera .return-button:hover {
-  opacity: 0.4;
-  cursor: pointer;
-}
-.camera .return-button:active {
-  opacity: 0.6;
-  cursor: pointer;
-  transition: all 50ms ease-in-out;
-}
-
 .camera .container .content {
   flex-direction: column;
   flex-wrap: 1;
@@ -95,7 +71,7 @@
 .camera .bg-back {
   background-color: #999;
   mask-position: 0 0;
-  animation: bgback 240s linear infinite forwards;
+  animation: bgback 360s linear infinite forwards;
 }
 
 @keyframes bgback {
@@ -123,11 +99,37 @@
   }
 }
 
-.camera button {
+.camera button.debug {
   flex: 1;
   width: 50px;
   height: 50px;
   font-size: 12px;
   text-align: center;
   vertical-align: center;
+}
+
+
+.camera button.return-button {
+  border: none;
+  min-width: 32px;
+  min-height: 32px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 25px;
+  background-color: white;
+  opacity: 0.2;
+  transition: all 250ms ease-in-out;
+}
+.camera button.return-button:hover {
+  opacity: 0.4;
+  cursor: pointer;
+}
+.camera button.return-button:active {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 50ms ease-in-out;
 }

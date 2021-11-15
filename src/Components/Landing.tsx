@@ -47,9 +47,7 @@ function ConstellationDebug({
     <>
       <div
         style={{
-          transform: `translate(${x1 + rp - 1}px, ${
-            y1 + rp - 1
-          }px) rotate(${skew}deg) scaleY(${length})`,
+          transform: `translate(${x1 + rp - 1}px, ${y1 + rp - 1}px) rotate(${skew}deg) scaleY(${length})`,
           borderWidth: 1,
           borderStyle: "solid",
           borderColor: "yellow",
@@ -59,9 +57,7 @@ function ConstellationDebug({
       />
       <div
         style={{
-          transform: `translate(${x2 + rp - 1}px, ${
-            y2 + rp - 1
-          }px) rotate(${skew}deg) scaleX(${length})`,
+          transform: `translate(${x2 + rp - 1}px, ${y2 + rp - 1}px) rotate(${skew}deg) scaleX(${length})`,
           borderWidth: 1,
           borderStyle: "solid",
           borderColor: "yellow",
@@ -71,9 +67,7 @@ function ConstellationDebug({
       />
       <div
         style={{
-          transform: `translate(${x2 + rp - 1}px, ${
-            y2 + rp - 1
-          }px) rotate(${skew}deg) scaleY(${length})`,
+          transform: `translate(${x2 + rp - 1}px, ${y2 + rp - 1}px) rotate(${skew}deg) scaleY(${length})`,
           borderWidth: 1,
           borderStyle: "solid",
           borderColor: "yellow",
@@ -83,9 +77,7 @@ function ConstellationDebug({
       />
       <div
         style={{
-          transform: `translate(${x1 + rp - 1}px, ${
-            y1 + rp - 1
-          }px) rotate(${skew}deg) scaleX(${length})`,
+          transform: `translate(${x1 + rp - 1}px, ${y1 + rp - 1}px) rotate(${skew}deg) scaleX(${length})`,
           borderWidth: 1,
           borderStyle: "solid",
           borderColor: "yellow",
@@ -97,15 +89,7 @@ function ConstellationDebug({
   );
 }
 
-function ConstellationPoint({
-  point,
-  size = POINT_SIZE,
-  children,
-}: {
-  point: Point;
-  size?: number;
-  children?: any;
-}) {
+function ConstellationPoint({ point, size = POINT_SIZE, children }: { point: Point; size?: number; children?: any }) {
   let style: React.CSSProperties = {
     transform: `translate(${point.x}px, ${point.y}px)`,
   };
@@ -142,19 +126,21 @@ function ConstellationLine({
     borderRadius: width / 2,
     backgroundColor: "white",
     transformOrigin: `${width / 2}px ${width / 2}px`,
-    transform: `translate(${x1 + rp - width / 2}px, ${
-      y1 + rp - width / 2
-    }px) rotate(${skew}deg) translate(${offset + rp}px, 0)`,
+    transform: `translate(${x1 + rp - width / 2}px, ${y1 + rp - width / 2}px) rotate(${skew}deg) translate(${
+      offset + rp
+    }px, 0)`,
   };
   return (
     <>
       {debug ? <ConstellationDebug first={start} second={end} /> : null}
-      <div className="line" style={{ ...leftright_style }} />
+      <div className='line' style={{ ...leftright_style }} />
     </>
   );
 }
 
 class Landing extends React.Component<ILandingProps, ILandingState> {
+  navLabelRef: React.RefObject<any>;
+
   constructor(props: ILandingProps) {
     super(props);
 
@@ -163,7 +149,10 @@ class Landing extends React.Component<ILandingProps, ILandingState> {
       hoverPos: CameraPos.CENTER,
     };
 
+    this.navLabelRef = React.createRef();
+
     this.renderNav = this.renderNav.bind(this);
+    this.renderNavInfo = this.renderNavInfo.bind(this);
   }
 
   renderNav(pos: CameraPos) {
@@ -180,9 +169,7 @@ class Landing extends React.Component<ILandingProps, ILandingState> {
     ) => {
       this.setState({ hover: false });
     };
-    const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (
-      evt: React.MouseEvent<HTMLButtonElement>
-    ) => {
+    const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (evt: React.MouseEvent<HTMLButtonElement>) => {
       this.props.camera.setCameraPos(pos);
     };
 
@@ -190,7 +177,7 @@ class Landing extends React.Component<ILandingProps, ILandingState> {
 
     return (
       <button
-        className="btn"
+        className='btn'
         style={{
           width: `${POINT_SIZE}px`,
           height: `${POINT_SIZE}px`,
@@ -223,10 +210,11 @@ class Landing extends React.Component<ILandingProps, ILandingState> {
     };
 
     return (
-      <Transition in={this.state.hover} timeout={250} unmountOnExit={false}>
+      <Transition ref={this.navLabelRef} in={this.state.hover} timeout={250} unmountOnExit={false}>
         {(state) => (
           <div
-            className="constellation"
+            ref={this.navLabelRef}
+            className='constellation'
             style={{
               display: "flex",
               justifyContent: "center",
@@ -235,8 +223,7 @@ class Landing extends React.Component<ILandingProps, ILandingState> {
               fontSize: 20,
               transition: trans,
               ...transitionStyle[state],
-            }}
-          >
+            }}>
             {navNames[this.state.hoverPos]}
           </div>
         )}
@@ -257,48 +244,41 @@ class Landing extends React.Component<ILandingProps, ILandingState> {
     const p4: Point = { x: mid, y: max };
 
     return (
-      <div className="landing-container">
-        <div className="landing-container-content">
-          <div className="col">
-            <div className="row">
+      <div className='landing-container'>
+        <div className='landing-container-content'>
+          <div className='col'>
+            <div className='row'>
               <h1>
-                Hi I'm <b className="highlight">Tenma Rollins</b>,
+                Hi I'm <b className='highlight'>Tenma Rollins</b>,
               </h1>
             </div>
-            <div className="row">
+            <div className='row'>
               <h2>
                 a <b>Software Engineer</b> from Washington
               </h2>
             </div>
 
-            <div className="constellation" style={{ marginTop: 32 }}>
+            <div className='constellation' style={{ marginTop: 32 }}>
               {this.renderNavInfo()}
               <ConstellationLine start={p1} end={p2} />
               <ConstellationLine start={p2} end={p3} />
               <ConstellationLine start={p3} end={p4} />
               <ConstellationLine start={p4} end={p1} />
-              <ConstellationPoint point={p1}>
-                {this.renderNav(CameraPos.LEFT)}
-              </ConstellationPoint>
-              <ConstellationPoint point={p2}>
-                {this.renderNav(CameraPos.UP)}
-              </ConstellationPoint>
-              <ConstellationPoint point={p3}>
-                {this.renderNav(CameraPos.RIGHT)}
-              </ConstellationPoint>
-              <ConstellationPoint point={p4}>
-                {this.renderNav(CameraPos.DOWN)}
-              </ConstellationPoint>
+              <ConstellationPoint point={p1}>{this.renderNav(CameraPos.LEFT)}</ConstellationPoint>
+              <ConstellationPoint point={p2}>{this.renderNav(CameraPos.UP)}</ConstellationPoint>
+              <ConstellationPoint point={p3}>{this.renderNav(CameraPos.RIGHT)}</ConstellationPoint>
+              <ConstellationPoint point={p4}>{this.renderNav(CameraPos.DOWN)}</ConstellationPoint>
             </div>
           </div>
         </div>
 
-        <div
-          className="links"
-          style={{ flexDirection: "row", marginTop: 32, marginLeft: "auto" }}
-        >
-          <GHLogo style={{ height: POINT_SIZE }} fill="white" />
-          <INLogo style={{ height: POINT_SIZE, marginLeft: 8 }} fill="white" />
+        <div className='links' style={{ flexDirection: "row", marginTop: 32, marginLeft: "auto" }}>
+          <a href='https://github.com/tenmar' target='_blank' rel="noreferrer">
+            <GHLogo style={{ height: POINT_SIZE }} fill='white' />
+          </a>
+          <a href='https://www.linkedin.com/in/tenmarollins/' target='_blank' rel="noreferrer">
+            <INLogo style={{ height: POINT_SIZE, marginLeft: 8 }} fill='white' />
+          </a>
         </div>
       </div>
     );

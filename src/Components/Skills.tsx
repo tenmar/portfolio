@@ -9,7 +9,7 @@ interface ISkillsProps {
 }
 
 const LANGUAGES: string[] = ['JavaScript','TypeScript','Kotlin','Swift','Java','C#','Python','SQL']
-const TECNOLOGY: string[] = ['ReactJS','React Native','Redux','Node.js','Android Studio','XCode','Visual Studio','Git', 'Google Cloud Platform']
+const TECNOLOGY: string[] = ['ReactJS','React Native','Redux', 'VueJS', 'Node.js','Android Studio','XCode','Visual Studio','Git', 'Google Cloud Platform']
 
 
 class Skills extends React.Component<ISkillsProps> {
@@ -47,9 +47,13 @@ class Skills extends React.Component<ISkillsProps> {
         <div className="horizontal-divider-right" />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h2>Languages</h2>
-          <ul>{LANGUAGES.map(lang => <li>{lang}</li>)}</ul>
+          <div className="skills-container">
+            {LANGUAGES.map(val => <div className="skills-item">{val}</div>)}
+          </div>
           <h2>Technology</h2>
-          <ul>{TECNOLOGY.map(tech => <li>{tech}</li>)}</ul>
+          <div className="skills-container">
+            {TECNOLOGY.map(val => <div className="skills-item">{val}</div>)}
+          </div>
         </div>
       </div>
     );

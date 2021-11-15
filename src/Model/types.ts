@@ -1,7 +1,11 @@
 
 export interface Project {
-    image?: string;
+    imageThumb: string;
+    imageBG?: string;
     title: string;
-    description: string;
-    date?: number;
+    
+    shortDescription: string;
+    longDescription: string;
+    
+    date: number;
 }

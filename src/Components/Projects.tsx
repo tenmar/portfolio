@@ -5,15 +5,9 @@ import "./Projects.css";
 import { withCamera } from "../Model";
 import { Project } from "../Model/types";
 import { OverlayProject } from ".";
-import { Transition } from "react-transition-group";
+import { Transition, TransitionStatus } from "react-transition-group";
 
-const DEFAULT_PROJECT: Project = {
-  image: "",
-  title: "Project Title Here",
-  description:
-    "Project description and what I did to make it and some other relevant information about it.",
-  date: new Date().getTime(),
-};
+import { AllProjects } from '../Model/projects'
 
 interface IGridListProps {
   data: Project[];
@@ -25,9 +19,9 @@ interface IGridListState {
 }
 class GridList extends React.Component<IGridListProps, IGridListState> {
   static defaultProps: Partial<IGridListProps> = {
-    data: [DEFAULT_PROJECT, DEFAULT_PROJECT, DEFAULT_PROJECT, DEFAULT_PROJECT],
+    data: [],
     pageSize: 4,
-    renderListItem: (item) => <div />,
+    renderListItem: (item) => <div></div>
   };
 
   constructor(props: IGridListProps) {
@@ -36,45 +30,6 @@ class GridList extends React.Component<IGridListProps, IGridListState> {
     this.state = {
       page: 0,
     };
-
-    this.renderContainer = this.renderContainer.bind(this);
-  }
-
-  renderContainer(item: Project, index: number) {
-    const imageSize = 100;
-
-    return (
-      <div className="list-item-container"
-        style={{ display: "flex", maxHeight: imageSize, flexDirection: "row" }}
-      >
-        <div className="list-item-image"
-          style={{
-            height: imageSize,
-            width: imageSize,
-            marginRight: 8,
-            backgroundColor: "rgba(255,255,255, 0.2)",
-          }}
-        />
-        <div style={{ maxHeight: imageSize, flex: 1, display: "flex", flexDirection: "column" }}>
-          <h2 style={{ flex: 0, fontSize: 18, lineHeight: '18px', margin: 0, padding: 0, marginBottom: 8 }}>
-            {item.title}
-          </h2>
-          <p
-            style={{
-              flex:1, 
-              fontSize: 12,
-              lineClamp: 4,
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-              margin: 0,
-              padding: 0,
-            }}
-          >
-            {item.description}
-          </p>
-        </div>
-      </div>
-    );
   }
 
   renderPagination() {
@@ -95,12 +50,11 @@ class GridList extends React.Component<IGridListProps, IGridListState> {
               aspectRatio: "1",
               height: 30,
               margin: "auto",
-              backgroundColor: "rgba(255,255,255,0.2)",
+              backgroundColor: "black",
               padding: 4,
               border: "none",
               color: "white",
-            }}
-          >
+            }}>
             {index}
           </button>
         );
@@ -118,26 +72,22 @@ class GridList extends React.Component<IGridListProps, IGridListState> {
     const gapAmount = 32;
 
     return (
-      <div className="list-container" style={{ paddingTop: gapAmount }}>
+      <div className='list-container' style={{ paddingTop: gapAmount }}>
         <div
-          className="list-content-container"
+          className='list-content-container'
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
             columnGap: gapAmount,
             rowGap: gapAmount,
-          }}
-        >
-          {getNextFour.map(this.renderContainer)}
+          }}>
+          {getNextFour.map(this.props.renderListItem)}
         </div>
         <div
-          className="list-pagination"
+          className='list-pagination'
           style={{
             display: "flex",
             marginTop: gapAmount,
             justifyContent: "center",
-          }}
-        >
+          }}>
           {this.renderPagination()}
         </div>
       </div>
@@ -149,51 +99,177 @@ interface IProjectsProps {
   camera: any;
 }
 interface IProjectsState {
-  selectedProject?: Project
+  projects: Project[];
+  selectedProject: Project;
+  overlayOpen: boolean;
 }
 class Projects extends React.Component<IProjectsProps, IProjectsState> {
   constructor(props: IProjectsProps) {
     super(props);
 
-    this.state = {}
+    this.state = {
+      projects: AllProjects,
+      selectedProject: AllProjects[0],
+      overlayOpen: false
+    };
 
     this.renderNav = this.renderNav.bind(this);
+    this.renderListItem = this.renderListItem.bind(this);
   }
+
+  get Projects(): Project[] {
+    return this.state.projects.sort((a, b) => a.date - b.date);
+  }
+
   renderNav() {
     return (
       <button
         disabled={this.props.camera.isAtCenter()}
-        className="back-button"
+        className='back-button'
         onClick={(evt: any) => {
           this.props.camera.backToCenter();
-        }}
-      >
+        }}>
         <h1>▼</h1>
       </button>
     );
   }
 
-  render() {
+  renderListItem(item: Project) {
+    const imageSize = 100;
+
+    const handleSelectItem: React.MouseEventHandler<any> = (event: React.MouseEvent<any>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.setState({ selectedProject: item, overlayOpen: true });
+      this.props.camera.toggleReturnButtonState();
+    };
 
 
-    return <>
-      <div className="projects" style={{ flexDirection: "column", width: 550 }}>
-        <div>
-          <h1 style={{ flex: 1, textAlign: "center" }}>Projects</h1>
+    return (
+      <div
+        className='list-item-container'
+        style={{ display: "flex", maxHeight: imageSize, flexDirection: "row" }}
+        onClick={handleSelectItem}
+        key={item.title + item.date}>
+        <img
+          src={item.imageThumb}
+          className='list-item-image'
+          alt="Preview thumbnail of project."
+          style={{
+            height: imageSize,
+            width: imageSize,
+          }}
+        />
+        <div className='list-item-text' style={{ maxHeight: imageSize }}>
+          <h2 style={{ flex: 0, fontSize: 18, lineHeight: "18px", margin: 0, marginTop: 2, padding: 0, marginBottom: 8 }}>
+            {item.title}
+          </h2>
+          <p
+            style={{
+              flex: 1,
+              fontSize: 12,
+              lineClamp: 4,
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              margin: 0,
+              padding: 0,
+            }}>
+            {item.shortDescription}
+          </p>
         </div>
-        <div className="horizontal-divider-center" />
-
-        <GridList></GridList>
       </div>
-      <Transition
-        in={this.state.selectedProject !== undefined}
-        timeout={500}
-        appear={true}
-        unmountOnExit={true}
-      >
-        <OverlayProject project={{ image: '', title: 'hello world', description: 'description'}} />
-      </Transition>
-    </>
+    );
+  }
+
+  render() {
+    const handleOnClose: React.MouseEventHandler<any> = (event: React.MouseEvent<any>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.setState({ overlayOpen: false }, () => this.props.camera.toggleReturnButtonState());
+    };
+
+    type AnimStyles = Record<TransitionStatus, React.CSSProperties>;
+
+    const trans = `transform 500ms, opacity 500ms ease-in-out`;
+    const animStylesOverlay: AnimStyles = {
+      entering: {
+        transform: `scale(1)`,
+        opacity: 1,
+      },
+      entered: {
+        transform: `scale(1)`,
+        opacity: 1,
+      },
+      exiting: {
+        transform: `scale(2)`,
+        opacity: 0,
+      },
+      exited: {
+        transform: `scale(2)`,
+        opacity: 0,
+        pointerEvents: "none",
+      },
+      unmounted: {
+        transform: `scale(2)`,
+        opacity: 0,
+        pointerEvents: "none",
+      },
+    };
+    const animStylesMainContent: AnimStyles = {
+      entering: {
+        transform: `scale(1)`,
+        opacity: 1,
+      },
+      entered: {
+        transform: `scale(1)`,
+        opacity: 1,
+      },
+      exiting: {
+        transform: `scale(0.5)`,
+        opacity: 0,
+      },
+      exited: {
+        transform: `scale(0.5)`,
+        opacity: 0,
+        pointerEvents: "none",
+      },
+      unmounted: {
+        transform: `scale(0.5)`,
+        opacity: 0,
+        pointerEvents: "none",
+      },
+    };
+
+    return (
+      <>
+        <Transition in={!this.state.overlayOpen} timeout={500} appear={false}>
+          {(state) => (
+            <div
+              className='projects'
+              style={{ flexDirection: "column", width: 550, transition: trans, ...animStylesMainContent[state] }}>
+              <div>
+                <h1 style={{ flex: 1, textAlign: "center" }}>Projects</h1>
+              </div>
+              <div className='horizontal-divider-center' />
+
+              <GridList data={this.Projects} renderListItem={this.renderListItem}></GridList>
+            </div>
+          )}
+        </Transition>
+        <Transition in={this.state.overlayOpen} timeout={500}>
+          <div className="projects-overlay-bg" />
+        </Transition>
+        <Transition in={this.state.overlayOpen} timeout={500} appear={false}>
+          {(state) => (
+            <OverlayProject
+              style={{ zIndex: 20, transition: trans, ...animStylesOverlay[state] }}
+              onClose={handleOnClose}
+              project={this.state.selectedProject}
+            />
+          )}
+        </Transition>
+      </>
+    );
   }
 }
 
