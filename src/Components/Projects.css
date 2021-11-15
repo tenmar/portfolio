@@ -52,7 +52,7 @@
 }
 
 .projects .list-item-container .list-item-image {
-  background-color: white;
+  background-color: black;
   opacity: 0.4;
   transition: all 250ms ease-in-out;
 }

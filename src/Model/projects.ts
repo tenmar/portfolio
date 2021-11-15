@@ -26,7 +26,7 @@ export const AllProjects: Project[] = [
     createProject(
         "Fractals",
         "Visualization of the Mandelbrot Fractal at a static zoom level written in Javascript",
-        "More info....",
+        "This project was one of my first explorations into coding back in high school. At the time, I was extremely fascinated by the structures of fractals, but I had no idea how I might generate or visualize them, so I decided to look into how I might do so using javascript. Definitely a project I want to revist and improve, perhaps with real-time manipulation of the domain/range space and the ability to change the iteration depth!",
 
         new Date(2013, 1, 1).getTime(),
 
@@ -36,7 +36,7 @@ export const AllProjects: Project[] = [
       createProject(
         "Asteroids",
         "Clone of the classic game Asteroids with collision and procedural generation written in Javascript.",
-        "More info....",
+        "This was another early project which was made as an initial exploration into the world of game-dev. I've been into video games all my life, but in High School I think I was particularly fond of top down arcade games: shooters, rouge-lites, and so on. Though the original version of Asteroids was far before my time, I knew of it and decided it was simple enough to replicate as a hobby project.",
 
         new Date(2014, 1, 1).getTime(),
         
@@ -45,15 +45,12 @@ export const AllProjects: Project[] = [
       ),
       createProject(
         "CodeDay2017",
-        "Audio Visualization Web Project createed for CodeDay Seattle 2017. Written in Javascript.",
-        "More info....",
+        "Audio Visualization Web Project created for CodeDay Seattle 2017. Written in Javascript.",
+        "Code Day Seattle in 2017 was my first ever Hackathon! It was a 24 hour anything-goes with impromptu teams and I collaborated with some CS undergrads from UW to create this demo of music visualizations inside a webpage. Going into this I had no knowledge whatsoever regarding audio stream data manipulation inside of a web app, nor did I have any real experience with audio visualization, but together with my team we were able to create this interesting demo! Not only that, but we also won an award for \"Best Application\"!",
+
         new Date(2017, 5, 20).getTime(),
+        
         CodeDay2017Thumb,
         CodeDay2017BG
       ),
-      // createProject(
-      //   "Tetris",
-      //   "Clone of the class game Tetris written for TCSS 305 WI17. Written in ",
-      //   new Date(2017, 3, 31).getTime()
-      // ),
 ]
